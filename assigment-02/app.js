@@ -1,10 +1,15 @@
 const app = Vue.createApp({
   data() {
-    return {};
+    return {
+      firstInput: "",
+    };
   },
   methods: {
     showAlert() {
       alert("Showing my alert!!!");
+    },
+    manageFirstInput(event) {
+      this.firstInput = event.target.value;
     },
   },
 });
