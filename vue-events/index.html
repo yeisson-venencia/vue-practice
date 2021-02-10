@@ -18,9 +18,12 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
+      <input type="number" name="" id="" v-model="stringAmount" />
       <button v-on:click="add">Add</button>
       <button v-on:click="reduce">Reduce</button>
       <p>Result: {{ counter }}</p>
+      <input type="text" v-on:input="changeName" />
+      <p>Your Name : {{ userName }}</p>
     </section>
   </body>
 </html>
