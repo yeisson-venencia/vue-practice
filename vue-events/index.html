@@ -20,10 +20,18 @@
       <h2>Events in Action</h2>
       <input type="number" name="" id="" v-model="stringAmount" />
       <button v-on:click="add">Add</button>
-      <button v-on:click="reduce">Reduce</button>
+      <button v-on:click.right="reduce">Reduce</button>
       <p>Result: {{ counter }}</p>
-      <input type="text" v-on:input="changeName($event, 'Venencia')" />
-      <p>Your Name : {{ userName }}</p>
+      <input
+        type="text"
+        v-on:input="changeName($event, 'Venencia')"
+        v-on:keyup.enter="confirmName"
+      />
+      <p>Your Name : {{ confirmedName }}</p>
+      <form v-on:submit.prevent="submitForm">
+        <input type="text" />
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>
