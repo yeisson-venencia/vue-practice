@@ -1,4 +1,4 @@
-const buttonEl = document.querySelector('button');
+/* const buttonEl = document.querySelector('button');
 const inputEl = document.querySelector('input');
 const listEl = document.querySelector('ul');
 
@@ -10,4 +10,4 @@ function addGoal() {
     inputEl.value = '';
 }
 
-buttonEl.addEventListener('click', addGoal)
+buttonEl.addEventListener('click', addGoal) */
