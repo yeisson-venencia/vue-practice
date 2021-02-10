@@ -21,6 +21,7 @@
       <input type="number" name="" id="" v-model="stringAmount" />
       <button v-on:click="add">Add</button>
       <button v-on:click.right="reduce">Reduce</button>
+      <p v-once>Start value: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
       <input
         type="text"
