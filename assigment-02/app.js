@@ -2,6 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       firstInput: "",
+      secondInput: "",
     };
   },
   methods: {
@@ -10,6 +11,12 @@ const app = Vue.createApp({
     },
     manageFirstInput(event) {
       this.firstInput = event.target.value;
+    },
+    manageSecondInput(event) {
+      this.secondInput = event.target.value;
+    },
+    showSecondInput(event) {
+      this.secondInput = event.target.value;
     },
   },
 });
