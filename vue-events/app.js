@@ -1,32 +1,45 @@
 const app = Vue.createApp({
   data() {
     return {
-      counter: 0,
+      counter: 10,
       userName: "",
       confirmedName: "",
-      stringAmount: 1,
     };
   },
+  watch: {
+    counter(value) {
+      if (value > 30) {
+        alert("Result to HIGH!!!\nForcing reset");
+        this.counter = 0;
+      }
+    },
+  },
   computed: {
-    amount() {
-      return parseInt(this.stringAmount);
+    fullName() {
+      if (this.userName === "") {
+        return "";
+      }
+      return this.userName + " " + "Venencia";
     },
   },
   methods: {
+    changeName(event) {
+      this.userName = event.target.value;
+    },
     confirmName() {
       this.confirmedName = this.userName;
     },
-    add() {
-      this.counter += this.amount;
+    resetName() {
+      this.userName = "";
     },
-    reduce() {
-      this.counter -= this.amount;
+    add(num) {
+      this.counter += num;
+    },
+    reduce(num) {
+      this.counter -= num;
     },
     submitForm() {
       alert("Submitted");
-    },
-    changeName(event, lastName) {
-      this.userName = event.target.value + " " + lastName;
     },
   },
 });
