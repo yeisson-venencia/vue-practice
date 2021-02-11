@@ -11,6 +11,9 @@ const app = Vue.createApp({
     boxAclasses() {
       return { active: this.boxAselected };
     },
+    boxCclasses() {
+      return { active: this.boxCselected };
+    },
   },
   methods: {
     boxSelected(box) {

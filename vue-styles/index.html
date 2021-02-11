@@ -19,13 +19,11 @@
     <section id="styling">
       <div :class="boxAclasses" class="demo" @click="boxSelected('A')"></div>
       <div
-        :style="{borderColor: boxBselected? 'red': '#ccc'}"
-        class="demo"
+        :class="['demo', {active: boxBselected}]"
         @click="boxSelected('B')"
       ></div>
       <div
-        :style="{borderColor: boxCselected? 'red': '#ccc'}"
-        class="demo"
+        :class="['demo', {active: boxCselected}]"
         @click="boxSelected('C')"
       ></div>
       <div
