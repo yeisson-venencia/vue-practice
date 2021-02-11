@@ -6,6 +6,14 @@ const app = Vue.createApp({
       confirmedName: "",
     };
   },
+  watch: {
+    counter(value) {
+      if (value > 30) {
+        alert("Result to HIGH!!!\nForcing reset");
+        this.counter = 0;
+      }
+    },
+  },
   computed: {
     fullName() {
       if (this.userName === "") {
