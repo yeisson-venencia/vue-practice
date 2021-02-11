@@ -7,8 +7,11 @@ const app = Vue.createApp({
     };
   },
   computed: {
-    amount() {
-      return parseInt(this.stringAmount);
+    fullName() {
+      if (this.userName === "") {
+        return "";
+      }
+      return this.userName + " " + "Venencia";
     },
   },
   methods: {
