@@ -18,16 +18,12 @@
     </header>
     <section id="app">
       <ul>
-        <li v-for="(person,index) in persons" :key="person.id">
-          <h2>{{person.fullname}}</h2>
-          <button @click="changeVisibility(person)">
-            {{ person.show ? 'Hide' : 'Show'}} Details
-          </button>
-          <ul v-show="person.show">
-            <li><strong>Phone:</strong> {{ person.phone }}</li>
-            <li><strong>Email:</strong> {{ person.email }}</li>
-          </ul>
-        </li>
+        <!-- <person-contact
+          v-for="(person,index) in persons"
+          :key="person.id"
+        ></person-contact> -->
+        <person-contact></person-contact>
+        <person-contact></person-contact>
       </ul>
     </section>
   </body>

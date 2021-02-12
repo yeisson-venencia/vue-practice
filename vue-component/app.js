@@ -7,21 +7,45 @@ const app = Vue.createApp({
           fullname: "Manuel Lorenz",
           phone: "01234 5678 991",
           email: "manuel@localhost.com",
-          show: true,
         },
         {
           id: 2,
           fullname: "Julie Jones",
           phone: "09876 543 221",
           email: "julie@localhost.com",
-          show: true,
         },
       ],
     };
   },
+});
+
+app.component("person-contact", {
+  template: `
+    <li>
+        <h2>{{person.fullname}}</h2>
+        <button @click="changeVisibility()">
+        {{ showDetails ? 'Hide' : 'Show'}} Details
+        </button>
+        <ul v-show="showDetails">
+        <li><strong>Phone:</strong> {{ person.phone }}</li>
+        <li><strong>Email:</strong> {{ person.email }}</li>
+        </ul>
+    </li>
+  `,
+  data() {
+    return {
+      showDetails: false,
+      person: {
+        id: 1,
+        fullname: "Manuel Lorenz",
+        phone: "01234 5678 991",
+        email: "manuel@localhost.com",
+      },
+    };
+  },
   methods: {
-    changeVisibility(person) {
-      person.show = !person.show;
+    changeVisibility() {
+      this.showDetails = !this.showDetails;
     },
   },
 });
