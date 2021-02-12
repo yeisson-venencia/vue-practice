@@ -29,6 +29,17 @@ export default {
       },
     },
   },
+  /* emits: ["change-favorite-status"], */
+  emits: {
+    "change-favorite-status": function(id) {
+      if (id) {
+        return true;
+      } else {
+        console.warn("Id is missing");
+        return false;
+      }
+    },
+  },
   data() {
     return {
       showDetails: false,
