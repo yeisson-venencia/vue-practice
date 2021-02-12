@@ -18,20 +18,14 @@
     </header>
     <section id="app">
       <ul>
-        <li>
-          <h2>Manuel Lorenz</h2>
-          <button>Show Details</button>
-          <ul>
-            <li><strong>Phone:</strong> 01234 5678 991</li>
-            <li><strong>Email:</strong> manuel@localhost.com</li>
-          </ul>
-        </li>
-        <li>
-          <h2>Julie Jones</h2>
-          <button>Show Details</button>
-          <ul>
-            <li><strong>Phone:</strong> 09876 543 221</li>
-            <li><strong>Email:</strong> julie@localhost.com</li>
+        <li v-for="(person,index) in persons" :key="person.id">
+          <h2>{{person.fullname}}</h2>
+          <button @click="changeVisibility(person)">
+            {{ person.show ? 'Hide' : 'Show'}} Details
+          </button>
+          <ul v-show="person.show">
+            <li><strong>Phone:</strong> {{ person.phone }}</li>
+            <li><strong>Email:</strong> {{ person.email }}</li>
           </ul>
         </li>
       </ul>
