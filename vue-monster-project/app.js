@@ -24,6 +24,8 @@ const app = Vue.createApp({
       monsterHealth: 100,
       playerHealth: 100,
       currentRound: 0,
+      gameOver: false,
+      endMessage: null,
     };
   },
   computed: {
@@ -35,6 +37,32 @@ const app = Vue.createApp({
     },
     specialAttackActive() {
       return this.currentRound % 3 !== 0;
+    },
+  },
+  watch: {
+    playerHealth(value) {
+      if (value === 0) {
+        this.gameOver = true;
+        if (this.monsterHealth === 0) {
+          // draw
+          this.endMessage = "It's a draw";
+        } else {
+          // lose
+          this.endMessage = "You lost :(";
+        }
+      }
+    },
+    monsterHealth(value) {
+      if (value === 0) {
+        this.gameOver = true;
+        if (this.playerHealth === 0) {
+          // draw
+          this.endMessage = "It's a draw";
+        } else {
+          // win
+          this.endMessage = "You are the WINNER!!";
+        }
+      }
     },
   },
   methods: {
@@ -61,6 +89,12 @@ const app = Vue.createApp({
       const value = getRandomValue(8, 20);
       this.playerHealth = takeHeal(this.playerHealth, value);
       this.monsterAttack();
+    },
+    startNewGame() {
+      this.currentRound = 0;
+      this.monsterHealth = 100;
+      this.playerHealth = 100;
+      this.gameOver = false;
     },
   },
 });

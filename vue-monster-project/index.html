@@ -29,18 +29,25 @@
           <div class="healthbar__value" :style="playerBar"></div>
         </div>
       </section>
-      <section id="controls">
-        <button @click="attack">ATTACK</button>
-        <button :disabled="specialAttackActive" @click="specialAttack">
-          SPECIAL ATTACK
-        </button>
-        <button @click="healPlayer">HEAL</button>
-        <button>SURRENDER</button>
+      <section v-if="gameOver" class="container">
+        <h2>Game over!!</h2>
+        <h3>{{endMessage}}</h3>
+        <button @click="startNewGame">NEW GAME</button>
       </section>
-      <section id="log" class="container">
-        <h2>Battle Log</h2>
-        <ul></ul>
-      </section>
+      <div v-else>
+        <section id="controls">
+          <button @click="attack">ATTACK</button>
+          <button :disabled="specialAttackActive" @click="specialAttack">
+            SPECIAL ATTACK
+          </button>
+          <button @click="healPlayer">HEAL</button>
+          <button>SURRENDER</button>
+        </section>
+        <section id="log" class="container">
+          <h2>Battle Log</h2>
+          <ul></ul>
+        </section>
+      </div>
     </div>
   </body>
 </html>
