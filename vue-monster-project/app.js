@@ -14,11 +14,8 @@ const app = Vue.createApp({
   data() {
     return {
       monsterHealth: 100,
-      monsterMinAttack: 7,
-      monsterMaxAttack: 15,
       playerHealth: 100,
-      playerMinAttack: 3,
-      playerMaxAttack: 10,
+      currentRound: 0,
     };
   },
   computed: {
@@ -28,21 +25,26 @@ const app = Vue.createApp({
     playerBar() {
       return { width: this.playerHealth + "%" };
     },
+    specialAttackActive() {
+      return this.currentRound % 3 !== 0;
+    },
   },
   methods: {
-    attack() {
-      const playerDamage = calculateDamage(
-        this.playerMinAttack,
-        this.playerMaxAttack
-      );
-      const monsterDamage = calculateDamage(
-        this.monsterMinAttack,
-        this.monsterMaxAttack
-      );
+    baseAttack(playerMinDamage, playerMaxDamage) {
+      this.currentRound++;
+
+      const playerDamage = calculateDamage(playerMinDamage, playerMaxDamage);
+      const monsterDamage = calculateDamage(7, 15);
 
       this.monsterHealth = takeDamage(this.monsterHealth, playerDamage);
 
       this.playerHealth = takeDamage(this.playerHealth, monsterDamage);
+    },
+    attack() {
+      this.baseAttack(5, 10);
+    },
+    specialAttack() {
+      this.baseAttack(10, 20);
     },
   },
 });
