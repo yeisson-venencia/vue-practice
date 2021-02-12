@@ -57,6 +57,16 @@ const app2 = Vue.createApp({
       favoriteMeal: "Pizza",
     };
   },
+  beforeUnmount() {
+    console.log("beforeUnmount()");
+  },
+  unmounted() {
+    console.log("unmounted");
+  },
 });
 
 app2.mount("#app2");
+
+setTimeout(() => {
+  app2.unmount();
+}, 3000);
