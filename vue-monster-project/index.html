@@ -45,7 +45,21 @@
         </section>
         <section id="log" class="container">
           <h2>Battle Log</h2>
-          <ul></ul>
+          <ul>
+            <li v-for="(message,index) in log" :key="index">
+              The
+              <span
+                :class="message.who === 'Player'? 'log--player' : 'log--monster'"
+                >{{message.who}}</span
+              >
+              executed
+              <span
+                :class="message.what === 'heal' ? 'log--heal' : 'log--damage'"
+                >{{message.what}}</span
+              >
+              with value <span class="log--value">{{message.value}}</span>
+            </li>
+          </ul>
         </section>
       </div>
     </div>
