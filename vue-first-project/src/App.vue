@@ -5,10 +5,12 @@
       <person-contact
         v-for="person in persons"
         :key="person.id"
+        :id="person.id"
         :name="person.fullname"
         :email="person.email"
         :phone="person.phone"
-        :is-favorite="true"
+        :is-favorite="person.isFavorite"
+        @change-favorite-status="changeFavoriteStatus"
       ></person-contact>
     </ul>
   </section>
@@ -24,15 +26,23 @@ export default {
           fullname: "Manuel Lorenz",
           phone: "01234 5678 991",
           email: "manuel@localhost.com",
+          isFavorite: true,
         },
         {
           id: 2,
           fullname: "Julie Jones",
           phone: "09876 543 221",
           email: "julie@localhost.com",
+          isFavorite: false,
         },
       ],
     };
+  },
+  methods: {
+    changeFavoriteStatus(personID) {
+      const person = this.persons.find((friend) => friend.id === personID);
+      person.isFavorite = !person.isFavorite;
+    },
   },
 };
 </script>
