@@ -1,27 +1,22 @@
 <template>
   <li>
-    <h2>{{ person.fullname }}</h2>
+    <h2>{{ name }}</h2>
     <button @click="toggleDetails">
       {{ showDetails ? "Hide" : "Show" }} Details
     </button>
     <ul v-show="showDetails">
-      <li><strong>Phone: </strong> {{ person.phone }}</li>
-      <li><strong>Email:</strong> {{ person.email }}</li>
+      <li><strong>Phone: </strong> {{ phone }}</li>
+      <li><strong>Email:</strong> {{ email }}</li>
     </ul>
   </li>
 </template>
 
 <script>
 export default {
+  props: ["name", "email", "phone"],
   data() {
     return {
       showDetails: false,
-      person: {
-        id: 1,
-        fullname: "Manuel Lorenz",
-        phone: "01234 5678 991",
-        email: "manuel@localhost.com",
-      },
     };
   },
   methods: {

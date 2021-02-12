@@ -2,8 +2,13 @@
   <section>
     <header><h1>My friends</h1></header>
     <ul>
-      <person-contact></person-contact>
-      <person-contact></person-contact>
+      <person-contact
+        v-for="person in persons"
+        :key="person.id"
+        :name="person.fullname"
+        :email="person.email"
+        :phone="person.phone"
+      ></person-contact>
     </ul>
   </section>
 </template>
