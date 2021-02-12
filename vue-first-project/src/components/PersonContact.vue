@@ -1,7 +1,9 @@
 <template>
   <li>
     <h2>{{ person.fullname }}</h2>
-    <button @click="toggleDetails">Show Details</button>
+    <button @click="toggleDetails">
+      {{ showDetails ? "Hide" : "Show" }} Details
+    </button>
     <ul v-show="showDetails">
       <li><strong>Phone: </strong> {{ person.phone }}</li>
       <li><strong>Email:</strong> {{ person.email }}</li>
