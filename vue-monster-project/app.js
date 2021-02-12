@@ -1,4 +1,4 @@
-function calculateDamage(min, max) {
+function getRandomValue(min, max) {
   return min + Math.round((max - min) * Math.random());
 }
 
@@ -6,6 +6,14 @@ function takeDamage(currentHealth, damage) {
   const newHealth = currentHealth - damage;
   if (newHealth < 0) {
     return 0;
+  }
+  return newHealth;
+}
+
+function takeHeal(currentHealth, heal) {
+  const newHealth = currentHealth + heal;
+  if (newHealth > 100) {
+    return 100;
   }
   return newHealth;
 }
@@ -30,21 +38,29 @@ const app = Vue.createApp({
     },
   },
   methods: {
-    baseAttack(playerMinDamage, playerMaxDamage) {
-      this.currentRound++;
-
-      const playerDamage = calculateDamage(playerMinDamage, playerMaxDamage);
-      const monsterDamage = calculateDamage(7, 15);
-
+    playerAttack(playerMinDamage, playerMaxDamage) {
+      const playerDamage = getRandomValue(playerMinDamage, playerMaxDamage);
       this.monsterHealth = takeDamage(this.monsterHealth, playerDamage);
-
+    },
+    monsterAttack() {
+      const monsterDamage = getRandomValue(7, 15);
       this.playerHealth = takeDamage(this.playerHealth, monsterDamage);
     },
     attack() {
-      this.baseAttack(5, 10);
+      this.currentRound++;
+      this.playerAttack(5, 10);
+      this.monsterAttack();
     },
     specialAttack() {
-      this.baseAttack(10, 20);
+      this.currentRound++;
+      this.playerAttack(10, 20);
+      this.monsterAttack();
+    },
+    healPlayer() {
+      this.currentRound++;
+      const value = getRandomValue(8, 20);
+      this.playerHealth = takeHeal(this.playerHealth, value);
+      this.monsterAttack();
     },
   },
 });
