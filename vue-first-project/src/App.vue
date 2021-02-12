@@ -8,6 +8,7 @@
         :name="person.fullname"
         :email="person.email"
         :phone="person.phone"
+        :is-favorite="true"
       ></person-contact>
     </ul>
   </section>
