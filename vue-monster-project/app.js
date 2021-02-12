@@ -96,6 +96,9 @@ const app = Vue.createApp({
       this.playerHealth = 100;
       this.gameOver = false;
     },
+    surrender() {
+      this.playerHealth = 0;
+    },
   },
 });
 
