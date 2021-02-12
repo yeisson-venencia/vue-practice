@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="monsterBar"></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="playerBar"></div>
+        </div>
+      </section>
+      <section v-if="gameOver" class="container">
+        <h2>Game over!!</h2>
+        <h3>{{endMessage}}</h3>
+        <button @click="startNewGame">NEW GAME</button>
+      </section>
+      <div v-else>
+        <section id="controls">
+          <button @click="attack">ATTACK</button>
+          <button :disabled="specialAttackActive" @click="specialAttack">
+            SPECIAL ATTACK
+          </button>
+          <button @click="healPlayer">HEAL</button>
+          <button @click="surrender">SURRENDER</button>
+        </section>
+        <section id="log" class="container">
+          <h2>Battle Log</h2>
+          <ul>
+            <li v-for="(message,index) in log" :key="index">
+              The
+              <span
+                :class="message.who === 'Player'? 'log--player' : 'log--monster'"
+                >{{message.who}}</span
+              >
+              executed
+              <span
+                :class="message.what === 'heal' ? 'log--heal' : 'log--damage'"
+                >{{message.what}}</span
+              >
+              with value <span class="log--value">{{message.value}}</span>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
