@@ -14,7 +14,20 @@
 
 <script>
 export default {
-  props: ["name", "email", "phone", "isFavorite"],
+  /* props: ["name", "email", "phone", "isFavorite"], */
+  props: {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: String, required: true },
+    isFavorite: {
+      type: Boolean,
+      required: false,
+      default: false,
+      validator() {
+        return true;
+      },
+    },
+  },
   data() {
     return {
       showDetails: false,
