@@ -1,6 +1,7 @@
 <template>
   <section>
     <header><h1>My friends</h1></header>
+    <add-person @add-person="addPerson"></add-person>
     <ul>
       <person-contact
         v-for="person in persons"
@@ -20,6 +21,7 @@
 export default {
   data() {
     return {
+      currentId: 3,
       persons: [
         {
           id: 1,
@@ -42,6 +44,17 @@ export default {
     changeFavoriteStatus(personID) {
       const person = this.persons.find((friend) => friend.id === personID);
       person.isFavorite = !person.isFavorite;
+    },
+    addPerson(name, phone, email) {
+      const newPerson = {
+        id: this.currentId,
+        fullname: name,
+        phone: phone,
+        email: email,
+        isFavorite: false,
+      };
+      this.currentId++;
+      this.persons.unshift(newPerson);
     },
   },
 };
@@ -78,7 +91,8 @@ header {
   list-style: none;
 }
 
-#app li {
+#app li,
+.add-person {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;
