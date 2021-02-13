@@ -11,13 +11,18 @@
 </template>
 
 <script>
+import TheHeader from "./components/TheHeader";
+import BadgeList from "./components/BadgeList";
+import UserInfo from "./components/UserInfo";
+
 export default {
+  components: { TheHeader, BadgeList, UserInfo },
   data() {
     return {
       activeUser: {
-        name: 'Maximilian Schwarzmüller',
-        description: 'Site owner and admin',
-        role: 'admin',
+        name: "Maximilian Schwarzmüller",
+        description: "Site owner and admin",
+        role: "admin",
       },
     };
   },
