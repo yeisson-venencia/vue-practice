@@ -5,16 +5,35 @@
     </h2>
     <input type="text" ref="goal" />
     <button @click="setGoal">Set Goal</button>
+    <error-alert v-if="inputIsInvalid">
+      <template #default>
+        <h2>Invalid Input</h2>
+        <p>Please enter at least a few characters...</p>
+        <button @click="confirmError">Ok</button>
+      </template>
+    </error-alert>
   </div>
 </template>
+
 <script>
+import ErrorAlert from "./ErrorAlert";
+
 export default {
+  components: { ErrorAlert },
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
+  },
   methods: {
     setGoal() {
       const enteredValue = this.$refs.goal.value;
       if (!enteredValue) {
-        alert("Error");
+        this.inputIsInvalid = true;
       }
+    },
+    confirmError() {
+      this.inputIsInvalid = false;
     },
   },
 };
