@@ -12,6 +12,7 @@
         :phone="person.phone"
         :is-favorite="person.isFavorite"
         @change-favorite-status="changeFavoriteStatus"
+        @delete-person="deletePerson"
       ></person-contact>
     </ul>
   </section>
@@ -55,6 +56,9 @@ export default {
       };
       this.currentId++;
       this.persons.unshift(newPerson);
+    },
+    deletePerson(personID) {
+      this.persons = this.persons.filter((person) => person.id !== personID);
     },
   },
 };

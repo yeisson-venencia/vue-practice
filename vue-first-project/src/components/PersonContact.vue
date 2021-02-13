@@ -9,6 +9,7 @@
       <li><strong>Phone: </strong> {{ phone }}</li>
       <li><strong>Email:</strong> {{ email }}</li>
     </ul>
+    <button @click="deletePerson">Delete</button>
   </li>
 </template>
 
@@ -39,6 +40,9 @@ export default {
         return false;
       }
     },
+    "delete-person": function() {
+      return true;
+    },
   },
   data() {
     return {
@@ -51,6 +55,9 @@ export default {
     },
     changeFavoriteStatus() {
       this.$emit("change-favorite-status", this.id);
+    },
+    deletePerson() {
+      this.$emit("delete-person", this.id);
     },
   },
 };

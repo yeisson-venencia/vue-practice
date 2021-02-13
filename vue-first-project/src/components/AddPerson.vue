@@ -1,11 +1,16 @@
 <template>
   <div class="add-person">
-    <div><label for="">Name: </label> <input type="text" v-model="name" /></div>
     <div>
-      <label for="">Phone: </label> <input type="text" v-model="phone" />
+      <label for="">Name</label>
+      <input type="text" v-model="name" />
     </div>
     <div>
-      <label for="">Email: </label> <input type="text" v-model="email" />
+      <label for="">Phone</label>
+      <input type="tel" v-model="phone" />
+    </div>
+    <div>
+      <label for="">E-mail</label>
+      <input type="email" v-model="email" />
     </div>
     <button @click="addPerson">Add Person</button>
   </div>
