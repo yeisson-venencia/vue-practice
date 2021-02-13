@@ -5,13 +5,15 @@
     </h2>
     <input type="text" ref="goal" />
     <button @click="setGoal">Set Goal</button>
-    <error-alert v-if="inputIsInvalid">
-      <template #default>
-        <h2>Invalid Input</h2>
-        <p>Please enter at least a few characters...</p>
-        <button @click="confirmError">Ok</button>
-      </template>
-    </error-alert>
+    <teleport to="body">
+      <error-alert v-if="inputIsInvalid">
+        <template #default>
+          <h2>Invalid Input</h2>
+          <p>Please enter at least a few characters...</p>
+          <button @click="confirmError">Ok</button>
+        </template>
+      </error-alert>
+    </teleport>
   </div>
 </template>
 
