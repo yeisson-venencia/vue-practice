@@ -1,9 +1,19 @@
 <template>
   <section>
     <header><h1>My friends</h1></header>
+    <add-person @add-person="addPerson"></add-person>
     <ul>
-      <person-contact></person-contact>
-      <person-contact></person-contact>
+      <person-contact
+        v-for="person in persons"
+        :key="person.id"
+        :id="person.id"
+        :name="person.fullname"
+        :email="person.email"
+        :phone="person.phone"
+        :is-favorite="person.isFavorite"
+        @change-favorite-status="changeFavoriteStatus"
+        @delete-person="deletePerson"
+      ></person-contact>
     </ul>
   </section>
 </template>
@@ -12,21 +22,44 @@
 export default {
   data() {
     return {
+      currentId: 3,
       persons: [
         {
           id: 1,
           fullname: "Manuel Lorenz",
           phone: "01234 5678 991",
           email: "manuel@localhost.com",
+          isFavorite: true,
         },
         {
           id: 2,
           fullname: "Julie Jones",
           phone: "09876 543 221",
           email: "julie@localhost.com",
+          isFavorite: false,
         },
       ],
     };
+  },
+  methods: {
+    changeFavoriteStatus(personID) {
+      const person = this.persons.find((friend) => friend.id === personID);
+      person.isFavorite = !person.isFavorite;
+    },
+    addPerson(name, phone, email) {
+      const newPerson = {
+        id: this.currentId,
+        fullname: name,
+        phone: phone,
+        email: email,
+        isFavorite: false,
+      };
+      this.currentId++;
+      this.persons.unshift(newPerson);
+    },
+    deletePerson(personID) {
+      this.persons = this.persons.filter((person) => person.id !== personID);
+    },
   },
 };
 </script>
@@ -62,7 +95,8 @@ header {
   list-style: none;
 }
 
-#app li {
+#app li,
+.add-person {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;
